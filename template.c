@@ -1,6 +1,8 @@
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+#include "menu.h"
+#include "gamestate.c"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -8,6 +10,8 @@ static SDL_Window *window;
 static SDL_Renderer *renderer;
 static int w;
 static int h;
+int gamestate;
+
 
 /* This function runs once at startup. */
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
@@ -38,6 +42,8 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     SDL_SetWindowSize(window, mode->w, mode->h);
 
     SDL_free(displays);
+
+    gamestate = INTRO_SCREEN;
 
     return SDL_APP_CONTINUE;
 }
